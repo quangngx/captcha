@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="en" />
+
+    <title>RECAPTCHA</title>
+    <meta name="description" content="Google ReCaptcha" />
+    <meta name="author" content="https://whysoft.vn" />
+
+    <!-- Social Sharing Info -->
+    <meta property="og:url" content="" />
+    <meta property="og:title" content="RECAPTCHA" />
+    <meta property="og:description" content="Google ReCaptcha" />
+    <meta property="og:image:width" content="1200" />
+    <!-- Full HD: WIDTH -->
+    <meta property="og:image:height" content="630" />
+    <!-- Full HD: HEIGHT -->
+
+    <!-- Viewport and mobile -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <script
+      src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+      async
+      defer
+    ></script>
+  </head>
+
+  <body>
+    <div id="html_element" style="display: flex; justify-content: center"></div>
+    <script type="text/javascript">
+      var verifyCallback = function (response) {
+        // alert("verify success: ", grecaptcha.getResponse());
+        window.flutter_inappwebview.callHandler("grecaptchaCallback", true);
+      };
+      var onloadCallback = function () {
+        grecaptcha.render("html_element", {
+          sitekey: "6Lf6olYnAAAAAHds0ByRb3yhGwzni-zEA3ejknEe",
+          callback: verifyCallback,
+        });
+      };
+    </script>
+  </body>
+</html>
