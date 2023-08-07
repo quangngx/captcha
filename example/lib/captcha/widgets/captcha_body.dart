@@ -59,9 +59,11 @@ class _CaptchaBodyState extends State<CaptchaBody> {
   }
 
   Future<void> isSuccessed(BuildContext context, bool value) async {
+    await Future.delayed(const Duration(seconds: 2));
     if (value) {
       Navigator.pop(context);
-      await Future.delayed(const Duration(seconds: 3));
+    } else {
+      print('Fail');
     }
   }
 }
