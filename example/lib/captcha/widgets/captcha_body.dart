@@ -32,21 +32,18 @@ class _CaptchaBodyState extends State<CaptchaBody> {
         onWebViewCreated: (controller) {
           controller.loadUrl(
               urlRequest: URLRequest(
-                  url: Uri.parse('https://flutter-ecom-776db.web.app/')));
+                  url: Uri.parse(
+                      'http://127.0.0.1:5500/web/public/index.html')));
 
-          controller.addJavaScriptHandler(
-              handlerName: 'step1Loaded',
-              callback: (args) {
-                debugPrint('From the JavaScript side:');
-                print(args);
-              });
           controller.addJavaScriptHandler(
               handlerName: 'grecaptchaCallback',
               callback: (args) async {
                 // Here you receive all the arguments from the JavaScript side
                 // that is a List<dynamic>
-                // debugPrint('From the JavaScript side:');
-                await isSuccessed(context, args.first);
+                debugPrint('From the JavaScript side:');
+                debugPrint(
+                  'token: ${args.first}',
+                );
               });
         },
         onWindowBlur: (controller) {

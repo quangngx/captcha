@@ -35,11 +35,15 @@
     <script type="text/javascript">
       var verifyCallback = function (response) {
         // alert("verify success: ", grecaptcha.getResponse());
-        window.flutter_inappwebview.callHandler("grecaptchaCallback", true);
+        console.log(grecaptcha.getResponse());
+        window.flutter_inappwebview.callHandler(
+          "grecaptchaCallback",
+          grecaptcha.getResponse()
+        );
       };
       var onloadCallback = function () {
         grecaptcha.render("html_element", {
-          sitekey: "6Lf6olYnAAAAAHds0ByRb3yhGwzni-zEA3ejknEe",
+          sitekey: "6LcXMkAnAAAAAI9kIve7t-dDkCf3xbzGZMxDZAnS",
           callback: verifyCallback,
         });
       };
