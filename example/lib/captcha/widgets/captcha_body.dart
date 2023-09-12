@@ -16,14 +16,13 @@ class CaptchaBody extends StatefulWidget {
 }
 
 class _CaptchaBodyState extends State<CaptchaBody> {
-  bool hasBigSize = false;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      height: hasBigSize ? 500 : 90, //90 for smaller notice, 500 for bigger one
-      width: MediaQuery.of(context).size.width - 32,
+      height: MediaQuery.of(context).size.height, //90 for smaller notice, 500 for bigger one
+      width: MediaQuery.of(context).size.width,
       color: Theme.of(context).scaffoldBackgroundColor,
       child: InAppWebView(
         // initialFile: 'assets/index.html',
@@ -32,35 +31,9 @@ class _CaptchaBodyState extends State<CaptchaBody> {
         onWebViewCreated: (controller) {
           controller.loadUrl(
               urlRequest: URLRequest(
-                  url: Uri.parse(
-                      'http://127.0.0.1:5500/web/public/index.html')));
-
-          controller.addJavaScriptHandler(
-              handlerName: 'grecaptchaCallback',
-              callback: (args) async {
-                // Here you receive all the arguments from the JavaScript side
-                // that is a List<dynamic>
-                debugPrint('From the JavaScript side:');
-                debugPrint(
-                  'token: ${args.first}',
-                );
-              });
-        },
-        onWindowBlur: (controller) {
-          setState(() {
-            hasBigSize = !hasBigSize;
-          });
+                  url: Uri.parse('http://43.129.25.152:88/')));
         },
       ),
     );
-  }
-
-  Future<void> isSuccessed(BuildContext context, bool value) async {
-    await Future.delayed(const Duration(seconds: 2));
-    if (value) {
-      Navigator.pop(context);
-    } else {
-      print('Fail');
-    }
   }
 }
