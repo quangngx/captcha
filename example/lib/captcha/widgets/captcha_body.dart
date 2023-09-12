@@ -16,23 +16,26 @@ class CaptchaBody extends StatefulWidget {
 }
 
 class _CaptchaBodyState extends State<CaptchaBody> {
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.center,
-      height: MediaQuery.of(context).size.height, //90 for smaller notice, 500 for bigger one
-      width: MediaQuery.of(context).size.width,
-      color: Theme.of(context).scaffoldBackgroundColor,
-      child: InAppWebView(
-        // initialFile: 'assets/index.html',
-        // initialUrlRequest:
-        //     URLRequest(url: Uri.parse('https://flutter-ecom-776db.web.app/')),
-        onWebViewCreated: (controller) {
-          controller.loadUrl(
-              urlRequest: URLRequest(
-                  url: Uri.parse('http://43.129.25.152:88/')));
-        },
+    return SafeArea(
+      child: Container(
+        alignment: Alignment.center,
+        height: MediaQuery.of(context)
+            .size
+            .height, //90 for smaller notice, 500 for bigger one
+        width: MediaQuery.of(context).size.width,
+        color: Theme.of(context).scaffoldBackgroundColor,
+        child: InAppWebView(
+          // initialFile: 'assets/index.html',
+          // initialUrlRequest:
+          //     URLRequest(url: Uri.parse('https://flutter-ecom-776db.web.app/')),
+          onWebViewCreated: (controller) {
+            controller.loadUrl(
+                urlRequest:
+                    URLRequest(url: Uri.parse('http://43.129.25.152:88/')));
+          },
+        ),
       ),
     );
   }
